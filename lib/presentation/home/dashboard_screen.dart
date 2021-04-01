@@ -14,7 +14,7 @@ class DashBoardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authprovider = Provider.of<AuthProvider>(context);
-    final Config config = Config(context);
+
     final ThemeData theme = Theme.of(context);
     return ChangeNotifierProvider.value(
       value: NavigationProvider(),
