@@ -1,11 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:your_fav_ceo/application/auth/auth_provider.dart';
-import 'package:your_fav_ceo/core/config.dart';
-import 'package:your_fav_ceo/core/constants.dart';
-import 'package:your_fav_ceo/presentation/home/settings.dart';
-import 'package:your_fav_ceo/presentation/widgets/user_card.dart';
+import '../../application/auth/auth_provider.dart';
+import '../../core/config.dart';
+import '../../core/constants.dart';
+import 'settings.dart';
+import '../widgets/user_card.dart';
 
 class DashBoardScreen extends StatefulWidget {
   @override
@@ -17,7 +17,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<AuthProvider>(context);
     final authprovider = Provider.of<AuthProvider>(context);
     final Config config = Config(context);
     final ThemeData theme = Theme.of(context);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:your_fav_ceo/core/config.dart';
-import 'package:your_fav_ceo/core/constants.dart';
+import '../../core/config.dart';
+import '../../core/constants.dart';
 
 class CustomMaterialButton extends StatelessWidget {
   final Config config;
@@ -28,6 +28,7 @@ class CustomMaterialButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: deprecated_member_use
     return RaisedButton(
       onPressed: onTap,
       elevation: 5.0,

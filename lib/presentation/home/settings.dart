@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:your_fav_ceo/core/config.dart';
+import '../../core/config.dart';
 
 class Settings extends StatelessWidget {
   @override

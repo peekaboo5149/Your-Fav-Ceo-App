@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:your_fav_ceo/application/auth/auth_provider.dart';
+import '../../application/auth/auth_provider.dart';
 
 import '../../application/theme/dynamic_theme.dart';
 import '../../core/config.dart';
