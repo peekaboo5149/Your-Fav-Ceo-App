@@ -14,14 +14,32 @@ void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  DynamicTheme themeProvider = DynamicTheme();
+  @override
+  void initState() {
+    getCurrent();
+    super.initState();
+  }
+
+  void getCurrent() async {
+    themeProvider.darkTheme =
+        await themeProvider.darkThemePreference.getTheme();
+  }
+
   final IAuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider.value(value: DynamicTheme()),
+          ChangeNotifierProvider.value(value: themeProvider),
           ChangeNotifierProvider.value(value: AuthProvider(auth: _auth)),
           StreamProvider<User>.value(
             value: _auth.getCurrentUserState(),

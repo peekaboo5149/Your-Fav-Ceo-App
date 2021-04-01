@@ -22,6 +22,7 @@ class AuthProvider with ChangeNotifier {
     updateWith(isLoading: true);
     try {
       await auth.signInWithFb();
+      updateWith(isLoading: false);
     } on PlatformException catch (e) {
       updateWith(isLoading: false);
       print(e.toString());

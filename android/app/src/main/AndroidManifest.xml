@@ -4,7 +4,7 @@
   <uses-permission android:name="android.permission.INTERNET"/>
 
    <application
-        android:label="your_fav_ceo"
+        android:label="YourFavCeo"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -47,7 +47,9 @@ class LoginScreen extends StatelessWidget {
                     ),
                     IconButton(
                       icon: Icon(themeprovider.appIcon),
-                      onPressed: () => themeprovider.toogleTheme(),
+                      onPressed: () =>
+                          {themeprovider.darkTheme = !themeprovider.darkTheme},
+                      // onPressed: () => print('heelo'),
                     ),
                   ],
                 ),
@@ -69,6 +71,9 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       CustomMaterialButton(
                         config: config,
+                        isLoading: authprovier.isLoading,
+                        canSubmit: authprovier.canSubmit,
+                        themeData: theme,
                         onTap: () async {
                           try {
                             await authprovier.submit();
