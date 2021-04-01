@@ -1,11 +1,12 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../../application/auth/auth_provider.dart';
 import '../../core/config.dart';
 import '../../core/constants.dart';
-import 'settings.dart';
 import '../widgets/user_card.dart';
+import 'settings.dart';
 
 class DashBoardScreen extends StatefulWidget {
   @override

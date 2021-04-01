@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../core/constants.dart';
 
 class DynamicTheme with ChangeNotifier {

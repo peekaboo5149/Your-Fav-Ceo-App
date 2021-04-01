@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../core/config.dart';
 
 class Settings extends StatelessWidget {
