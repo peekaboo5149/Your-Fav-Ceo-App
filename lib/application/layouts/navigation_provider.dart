@@ -7,8 +7,8 @@ class NavigationProvider with ChangeNotifier {
 
   String get appTitle {
     if (currentPage == 0) return 'your fav ceo';
-    if (currentPage == 1) return 'Top CEOS';
-    return 'All Ceos';
+    if (currentPage == 1) return 'Top 3 CEOS';
+    return 'LEADERBOARD';
   }
 
   navigate(int val) {

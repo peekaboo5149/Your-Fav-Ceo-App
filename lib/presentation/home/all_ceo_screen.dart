@@ -21,8 +21,11 @@ class AllCeoScreen extends StatelessWidget {
               );
             return ListView.builder(
               itemCount: value.length,
-              itemBuilder: (context, index) =>
-                  CustomCards(config: config, themeData: theme),
+              itemBuilder: (context, index) => CustomCards(
+                  name: value[index].name,
+                  number: value[index].upvotes,
+                  config: config,
+                  themeData: theme),
             );
           },
         ));

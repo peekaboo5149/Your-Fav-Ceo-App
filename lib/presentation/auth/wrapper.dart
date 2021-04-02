@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +15,28 @@ class Wrapper extends StatelessWidget {
     if (userprovider == null) {
       return LoginScreen();
     }
-    return DashBoardScreen();
+    return FutureBuilder<SharedPreferences>(
+        future: SharedPreferences.getInstance(),
+        builder:
+            (BuildContext context, AsyncSnapshot<SharedPreferences> prefs) {
+          if (prefs.connectionState == ConnectionState.done) {
+            Map<String, String> userPrefs = {
+              'email': userprovider.email,
+              'imgUrl': userprovider.photoURL
+            };
+            prefs.data.setString('cUser', json.encode(userPrefs));
+            return DashBoardScreen();
+          } else
+            return _buildLoadingScreen();
+        });
+  }
+
+  _buildLoadingScreen() {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
   }
 }

@@ -20,26 +20,6 @@ class CEO {
     @required this.imageurl,
   });
 
-  CEO copyWith({
-    String id,
-    String name,
-    String company,
-    String designation,
-    int upvotes,
-    int downvotes,
-    String imageurl,
-  }) {
-    return CEO(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      company: company ?? this.company,
-      designation: designation ?? this.designation,
-      upvotes: upvotes ?? this.upvotes,
-      downvotes: downvotes ?? this.downvotes,
-      imageurl: imageurl ?? this.imageurl,
-    );
-  }
-
   Map<String, dynamic> toMap() {
     return {
       'id': id,

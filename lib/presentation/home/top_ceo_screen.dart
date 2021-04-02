@@ -22,6 +22,8 @@ class TopCeoScreen extends StatelessWidget {
           return ListView.builder(
             itemCount: value.length,
             itemBuilder: (context, index) => CustomCards(
+              name: value[index].name,
+              number: value[index].upvotes,
               height: config.height * 0.25,
               config: config,
               themeData: theme,

@@ -22,7 +22,6 @@ class AuthProvider with ChangeNotifier {
     updateWith(isLoading: true);
     try {
       await auth.signInWithFb();
-      updateWith(isLoading: false);
     } on PlatformException catch (e) {
       updateWith(isLoading: false);
       print(e.toString());
@@ -33,11 +32,8 @@ class AuthProvider with ChangeNotifier {
   User get currentUser => auth.getCurrentUser();
 
   Future<void> logout() async {
-    try {
-      await auth.signOut();
-    } catch (e) {
-      print(e.toString());
-    }
+    // updateWith(isLoading: true);
+    await auth.signOut();
   }
 
   bool get canSubmit => !isLoading;
