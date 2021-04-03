@@ -2,15 +2,13 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:your_fav_ceo/application/layouts/navigation_provider.dart';
-import 'package:your_fav_ceo/application/theme/dynamic_theme.dart';
-import 'package:your_fav_ceo/presentation/home/all_ceo_screen.dart';
-import 'package:your_fav_ceo/presentation/home/home_screen.dart';
-import 'package:your_fav_ceo/presentation/home/settings.dart';
-import 'package:your_fav_ceo/presentation/home/top_ceo_screen.dart';
 
 import '../../application/auth/auth_provider.dart';
+import '../../application/layouts/navigation_provider.dart';
 import '../../core/constants.dart';
+import 'all_ceo_screen.dart';
+import 'home_screen.dart';
+import 'top_ceo_screen.dart';
 
 class DashBoardScreen extends StatelessWidget {
   @override
@@ -23,7 +21,7 @@ class DashBoardScreen extends StatelessWidget {
       value: NavigationProvider(),
       child: Consumer<NavigationProvider>(
         builder: (context, value, child) => Scaffold(
-          backgroundColor: greyishWhite,
+          backgroundColor: theme.primaryColor,
           appBar: _buildAppBar(
             text: value.appTitle,
             theme: theme,
@@ -62,15 +60,15 @@ class DashBoardScreen extends StatelessWidget {
         ),
       ),
       actions: [
-        IconButton(
-            icon: Icon(
-              Icons.settings,
-              color: theme.accentColor,
-            ),
-            onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => Settings()));
-            }),
+        // IconButton(
+        //     icon: Icon(
+        //       Icons.settings,
+        //       color: theme.accentColor,
+        //     ),
+        //     onPressed: () {
+        //       Navigator.of(context)
+        //           .push(MaterialPageRoute(builder: (_) => Settings()));
+        //     }),
         IconButton(
             icon: Icon(
               Icons.exit_to_app,
@@ -98,7 +96,10 @@ class DashBoardScreen extends StatelessWidget {
       backgroundColor: theme.primaryColor,
       onTap: onTap,
       items: [
-        Icon(Icons.dashboard),
+        Icon(
+          Icons.dashboard,
+          color: Colors.black,
+        ),
         CircleAvatar(
           backgroundColor: Colors.white,
           child: LayoutBuilder(
@@ -107,7 +108,10 @@ class DashBoardScreen extends StatelessWidget {
             ),
           ),
         ),
-        Icon(Icons.list),
+        Icon(
+          Icons.list,
+          color: Colors.black,
+        ),
       ],
     );
   }

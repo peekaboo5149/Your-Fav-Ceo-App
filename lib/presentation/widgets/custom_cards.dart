@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:your_fav_ceo/core/config.dart';
+import 'package:your_fav_ceo/core/constants.dart';
+
+import '../../core/config.dart';
 
 class CustomCards extends StatelessWidget {
   final Config config;
-  final ThemeData themeData;
+  // final ThemeData themeData;
   final double height;
   final String name;
   final int number;
+  final bool flex;
 
   const CustomCards({
     Key key,
     @required this.config,
-    @required this.themeData,
+    // @required this.themeData,
     this.height,
     @required this.name,
     @required this.number,
+    this.flex = false,
   })  : assert(name != null, number != null),
         super(key: key);
 
@@ -26,25 +30,31 @@ class CustomCards extends StatelessWidget {
       ),
       child: Card(
         elevation: 5.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(config.height * 0.01),
+          ),
+        ),
         child: Container(
-          padding: EdgeInsets.all(config.width * 0.1),
-          color: themeData.primaryColor,
+          padding: !flex
+              ? EdgeInsets.all(config.width * 0.1)
+              : EdgeInsets.only(left: config.width * 0.1),
+          decoration: BoxDecoration(
+            color: greyishWhite,
+            borderRadius: BorderRadius.all(
+              Radius.circular(config.height * 0.01),
+            ),
+          ),
           // color: Colors.white,
           height: height ?? config.height * 0.17,
           child: Row(
             children: [
-              Expanded(
-                child: Text(
-                  name,
-                  style: TextStyle(
-                    color: themeData.accentColor,
-                    fontFamily: 'Cabin',
-                    fontSize: config.width * 0.08,
-                    letterSpacing: 1.3,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+              Flexible(
+                  child: Text(
+                name,
+                overflow: TextOverflow.fade,
+                style: _buildTextStyle(),
+              )),
               const Spacer(),
               Expanded(
                 child: Text(
@@ -60,6 +70,16 @@ class CustomCards extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  TextStyle _buildTextStyle() {
+    return TextStyle(
+      color: Colors.black,
+      fontFamily: 'Cabin',
+      fontSize: config.width * 0.08,
+      letterSpacing: 1.3,
+      fontWeight: FontWeight.bold,
     );
   }
 }

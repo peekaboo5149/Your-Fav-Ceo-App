@@ -1,8 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+
+import '../database/cloud_database_service.dart';
 
 abstract class IAuthService {
   Stream<User> getCurrentUserState();
@@ -26,6 +29,7 @@ class AuthService extends IAuthService {
             await _auth.signInWithCredential(FacebookAuthProvider.credential(
           result.accessToken.token,
         ));
+        await CloudDatabaseService.addUserToList(userCreds.user);
         return userCreds.user;
       } catch (e) {
         if (e.code != 'ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL') throw e;

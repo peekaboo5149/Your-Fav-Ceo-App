@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:your_fav_ceo/core/config.dart';
-import 'package:your_fav_ceo/infrastructure/database/cloud_database_service.dart';
-import 'package:your_fav_ceo/models/ceo_models.dart';
-import 'package:your_fav_ceo/presentation/widgets/custom_cards.dart';
+
+import '../../core/config.dart';
+import '../../infrastructure/database/cloud_database_service.dart';
+import '../../models/ceo_models.dart';
+import '../widgets/custom_cards.dart';
 
 class AllCeoScreen extends StatelessWidget {
   @override
@@ -11,7 +12,7 @@ class AllCeoScreen extends StatelessWidget {
     final theme = Theme.of(context);
     final Config config = Config(context);
     return StreamProvider<List<CEO>>.value(
-        value: CloudDatabaseService.getTopCeos(6),
+        value: CloudDatabaseService.getAllCeos(),
         initialData: [],
         child: Consumer<List<CEO>>(
           builder: (context, value, child) {
@@ -22,10 +23,13 @@ class AllCeoScreen extends StatelessWidget {
             return ListView.builder(
               itemCount: value.length,
               itemBuilder: (context, index) => CustomCards(
-                  name: value[index].name,
-                  number: value[index].upvotes,
-                  config: config,
-                  themeData: theme),
+                flex: true,
+                name: value[index].name,
+                // height: config.height * 0.2,
+                number: value[index].upvotes,
+                config: config,
+                // themeData: theme,
+              ),
             );
           },
         ));

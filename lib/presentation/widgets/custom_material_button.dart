@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import '../../core/config.dart';
 import '../../core/constants.dart';
 
@@ -30,7 +31,7 @@ class CustomMaterialButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading)
+    if (!canSubmit)
       return Container(
         color: themeData.primaryColor,
         alignment: Alignment.center,

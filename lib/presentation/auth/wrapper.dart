@@ -21,6 +21,7 @@ class Wrapper extends StatelessWidget {
             (BuildContext context, AsyncSnapshot<SharedPreferences> prefs) {
           if (prefs.connectionState == ConnectionState.done) {
             Map<String, String> userPrefs = {
+              'uid': userprovider.uid,
               'email': userprovider.email,
               'imgUrl': userprovider.photoURL
             };

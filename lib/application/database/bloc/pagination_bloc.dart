@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:your_fav_ceo/infrastructure/database/cloud_database_service.dart';
-import 'package:your_fav_ceo/models/ceo_models.dart';
+
+import '../../../infrastructure/database/cloud_database_service.dart';
+import '../../../models/ceo_models.dart';
 
 class PaginationProvider with ChangeNotifier {
   List<CEO> _ceos = [];
