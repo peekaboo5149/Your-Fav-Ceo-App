@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:your_fav_ceo/core/constants.dart';
 
 import '../../core/config.dart';
+import '../../core/constants.dart';
 
 class CustomCards extends StatelessWidget {
   final Config config;

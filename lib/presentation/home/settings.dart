@@ -3,8 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:your_fav_ceo/application/theme/dynamic_theme.dart';
-import 'package:your_fav_ceo/core/config.dart';
+
+import '../../application/theme/dynamic_theme.dart';
+import '../../core/config.dart';
 
 class Settings extends StatelessWidget {
   @override

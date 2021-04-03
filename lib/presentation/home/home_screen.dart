@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:your_fav_ceo/presentation/home/settings.dart';
 
 import '../../core/config.dart';
 import '../../infrastructure/database/cloud_database_service.dart';
 import '../../models/ceo_models.dart';
 import '../widgets/ceo_card.dart';
+import 'settings.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
