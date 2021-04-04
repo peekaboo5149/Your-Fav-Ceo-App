@@ -48,34 +48,4 @@ class CEO {
   String toJson() => json.encode(toMap());
 
   factory CEO.fromJson(String source) => CEO.fromMap(json.decode(source));
-
-  @override
-  String toString() {
-    return 'CEO(id: $id, name: $name, company: $company, designation: $designation, upvotes: $upvotes, downvotes: $downvotes, imageurl: $imageurl)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is CEO &&
-        other.id == id &&
-        other.name == name &&
-        other.company == company &&
-        other.designation == designation &&
-        other.upvotes == upvotes &&
-        other.downvotes == downvotes &&
-        other.imageurl == imageurl;
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode ^
-        name.hashCode ^
-        company.hashCode ^
-        designation.hashCode ^
-        upvotes.hashCode ^
-        downvotes.hashCode ^
-        imageurl.hashCode;
-  }
 }

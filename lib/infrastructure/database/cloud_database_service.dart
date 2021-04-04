@@ -41,7 +41,8 @@ class CloudDatabaseService {
         .then((docSnapshot) => docSnapshot.exists);
   }
 
-  static updateUserCeoList(String userId, String ceoId) async {
+  static Future<void> updateUserCeoList(
+      String userId, String ceoId, bool isUpvote) async {
     var ds = await _db.collection('users').doc(userId).get();
     List ceoVisited = ds.data()['ceoVisited'];
     ceoVisited.add(ceoId);
@@ -49,6 +50,18 @@ class CloudDatabaseService {
         .collection('users')
         .doc(userId)
         .update({'ceoVisited': ceoVisited});
+    ds = await _db.collection('ceo').doc(ceoId.trim()).get();
+    var toChange = isUpvote ? ds.data()['upvotes'] : ds.data()['downvotes'];
+    toChange++;
+    isUpvote
+        ? await _db
+            .collection('ceo')
+            .doc(ceoId.trim())
+            .update({'upvotes': toChange})
+        : await _db
+            .collection('ceo')
+            .doc(ceoId.trim())
+            .update({'downvotes': toChange});
   }
 
   static Future<List<CEO>> getUnvisitedCEOs() async {
@@ -59,12 +72,19 @@ class CloudDatabaseService {
         .doc(user['uid'])
         .get()
         .then((value) => value.get('ceoVisited'));
-
+    // print('================');
+    // ceoVisited.forEach((element) {
+    //   print(element);
+    // });
+    // print('================');
     QuerySnapshot snapshot = await _db.collection('ceo').get();
     List<String> allCEOs = [];
     snapshot.docs.forEach((doc) => allCEOs.add(doc.id));
     List<String> temp = allCEOs;
     temp.removeWhere((id) => ceoVisited.contains(id));
+    // temp.forEach((element) {
+    //   print(element);
+    // });
     List<CEO> toVisitCEO = [];
     for (int i = 0; i < temp.length; i++) {
       var ceoID = temp[i];

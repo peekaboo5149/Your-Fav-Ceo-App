@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:your_fav_ceo/application/layouts/feedback_ceo_provider.dart';
 
 import 'application/auth/auth_provider.dart';
 import 'application/theme/dynamic_theme.dart';
@@ -39,6 +40,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
+          ChangeNotifierProvider.value(value: FeedBackProvider()),
           ChangeNotifierProvider.value(value: themeProvider),
           ChangeNotifierProvider.value(value: AuthProvider(auth: _auth)),
           StreamProvider<User>.value(
