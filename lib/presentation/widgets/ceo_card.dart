@@ -1,4 +1,6 @@
+// import 'package:firebase_image/firebase_image.dart';
 import 'package:flutter/material.dart';
+import 'package:your_fav_ceo/core/constants.dart';
 
 import '../../core/config.dart';
 import '../../models/ceo_models.dart';
@@ -10,12 +12,16 @@ class SwipeCards extends StatelessWidget {
     this.isLoading = false,
     this.ceo,
     this.isBlank = false,
+    this.isDisLiked = false,
+    this.isLiked = false,
   }) : super(key: key);
 
   final Config config;
   final bool isLoading;
   final bool isBlank;
   final CEO ceo;
+  final bool isLiked;
+  final bool isDisLiked;
 
   @override
   Widget build(BuildContext context) {
@@ -46,17 +52,27 @@ class SwipeCards extends StatelessWidget {
                     ]),
                     borderRadius:
                         BorderRadius.all(Radius.circular(config.width * 0.1)),
-                    // image: DecorationImage(
-                    //   onError: (exception, stackTrace) {
-                    //     print(exception.toString());
-                    //   },
-                    //   image: NetworkImage(
-                    //     ceo.imageurl != null
-                    //         ? ceo.imageurl
-                    //         : 'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80',
-                    //   ),
-                    //   fit: BoxFit.fill,
-                    // ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: config.width * 0.1,
+                      bottom: config.width * 0.1,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          ceo.name,
+                          style: TextStyle(
+                            color: dark,
+                            fontFamily: 'Cabin',
+                            fontSize: config.width * 0.06,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

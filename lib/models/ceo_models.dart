@@ -10,6 +10,7 @@ class CEO {
   final int upvotes;
   final int downvotes;
   final String imageurl;
+
   CEO({
     @required this.id,
     @required this.name,

@@ -28,7 +28,7 @@ class CloudDatabaseService {
       'uid': user.uid,
       'name': user.displayName,
       'imgUrl': user.photoURL,
-      'ceoVisited': [] as List<String>
+      'ceoVisited': [] as List<String>,
     };
     if (!isUserAvailable) _db.collection('users').doc(user.uid).set(userInfo);
   }
@@ -41,10 +41,20 @@ class CloudDatabaseService {
         .then((docSnapshot) => docSnapshot.exists);
   }
 
-  static Future<List<String>> getUnvisitedCEOs() async {
+  static updateUserCeoList(String userId, String ceoId) async {
+    var ds = await _db.collection('users').doc(userId).get();
+    List ceoVisited = ds.data()['ceoVisited'];
+    ceoVisited.add(ceoId);
+    await _db
+        .collection('users')
+        .doc(userId)
+        .update({'ceoVisited': ceoVisited});
+  }
+
+  static Future<List<CEO>> getUnvisitedCEOs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Map user = json.decode(prefs.getString('cUser'));
-    List<String> ceoVisited = await _db
+    List ceoVisited = await _db
         .collection('users')
         .doc(user['uid'])
         .get()
@@ -53,9 +63,36 @@ class CloudDatabaseService {
     QuerySnapshot snapshot = await _db.collection('ceo').get();
     List<String> allCEOs = [];
     snapshot.docs.forEach((doc) => allCEOs.add(doc.id));
-    List<String> toVisitCEO = allCEOs;
-    toVisitCEO.removeWhere((id) => ceoVisited.contains(id));
-    print(toVisitCEO);
+    List<String> temp = allCEOs;
+    temp.removeWhere((id) => ceoVisited.contains(id));
+    List<CEO> toVisitCEO = [];
+    for (int i = 0; i < temp.length; i++) {
+      var ceoID = temp[i];
+      var ds = await _db.collection('ceo').doc(ceoID).get();
+      toVisitCEO.add(CEO.fromMap(ds.data()));
+    }
     return toVisitCEO;
   }
+
+  // Future<List<CEO>> getListofCeos(String id) {
+  //   List<String> temp = [];
+
+  //   return getUnvisitedCEOs().then((value) {
+  //     temp = [...value];
+  //     return temp
+  //         .map((e) => _db
+  //             .collection('ceo')
+  //             .doc(e)
+  //             .get()
+  //             .then((value) => CEO.fromMap(value.data())))
+  //         .toList();
+  //   });
+
+  //   // return _db
+  //   //     .collection('ceo')
+  //   //     .doc(id)
+  //   //     .get()
+  //   //     .then((value) => CEO.fromMap(value.data()));
+  // }
+
 }
