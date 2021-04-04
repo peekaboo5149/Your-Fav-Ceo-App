@@ -11,7 +11,6 @@ class FeedBackProvider with ChangeNotifier {
     bool hasEnded,
   }) {
     this.hasEnded = hasEnded ?? this.hasEnded;
-
     notifyListeners();
   }
 }
