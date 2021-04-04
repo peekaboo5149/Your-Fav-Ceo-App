@@ -2,13 +2,12 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:your_fav_ceo/presentation/home/home_screen_main.dart';
 
 import '../../application/auth/auth_provider.dart';
 import '../../application/layouts/navigation_provider.dart';
 import '../../core/constants.dart';
 import 'all_ceo_screen.dart';
-import 'home_screen.dart';
+import 'home_screen_main.dart';
 import 'top_ceo_screen.dart';
 
 class DashBoardScreen extends StatelessWidget {

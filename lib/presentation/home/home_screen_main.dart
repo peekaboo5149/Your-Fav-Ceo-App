@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tcard/tcard.dart';
-import 'package:your_fav_ceo/application/layouts/feedback_ceo_provider.dart';
-import 'package:your_fav_ceo/core/config.dart';
-import 'package:your_fav_ceo/infrastructure/database/cloud_database_service.dart';
-import 'package:your_fav_ceo/models/ceo_models.dart';
-import 'package:your_fav_ceo/presentation/home/settings.dart';
-import 'package:your_fav_ceo/presentation/widgets/blank_widget.dart';
-import 'package:your_fav_ceo/presentation/widgets/swipable_card.dart';
+
+import '../../application/layouts/feedback_ceo_provider.dart';
+import '../../core/config.dart';
+import '../../infrastructure/database/cloud_database_service.dart';
+import '../../models/ceo_models.dart';
+import '../widgets/blank_widget.dart';
+import '../widgets/swipable_card.dart';
+import 'settings.dart';
 
 class HomeMainScreen extends StatefulWidget {
   @override

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:your_fav_ceo/core/config.dart';
-import 'package:your_fav_ceo/models/ceo_models.dart';
+import '../../core/config.dart';
+import '../../models/ceo_models.dart';
 
 class SwipableCard extends StatelessWidget {
   final CEO ceo;
