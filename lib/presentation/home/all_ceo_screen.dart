@@ -9,7 +9,6 @@ import '../widgets/custom_cards.dart';
 class AllCeoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final Config config = Config(context);
     return StreamProvider<List<CEO>>.value(
         value: CloudDatabaseService.getAllCeos(),

@@ -92,12 +92,27 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
             }
-            if (snapshot.data == null) {
-              return Center(
-                child: Text(
-                  'No data',
-                  style: TextStyle(color: theme.accentColor),
-                ),
+            print("has data " + snapshot.hasData.toString());
+            if (!snapshot.hasData) {
+              return LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  return GestureDetector(
+                      onTap: () {
+                        setState(() {});
+                      },
+                      child: Container(
+                        color: theme.primaryColor,
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Trying to fetch data.....\nTap here",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: theme.accentColor,
+                              fontWeight: FontWeight.w800,
+                              fontFamily: 'Cabin'),
+                        ),
+                      ));
+                },
               );
             }
 

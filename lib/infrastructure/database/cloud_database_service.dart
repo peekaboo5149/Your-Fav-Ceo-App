@@ -23,14 +23,22 @@ class CloudDatabaseService {
   }
 
   static Future<void> addUserToList(User user) async {
+    print('addusertolist called');
     bool isUserAvailable = await _checkUserDocs(user.uid);
+    print('Is user available: ' + isUserAvailable.toString());
+    print(user == null);
+    print("user uid: " + user.uid);
     Map<String, dynamic> userInfo = {
       'uid': user.uid,
       'name': user.displayName,
       'imgUrl': user.photoURL,
-      'ceoVisited': [] as List<String>,
+      'ceoVisited': [],
     };
-    if (!isUserAvailable) _db.collection('users').doc(user.uid).set(userInfo);
+    print(userInfo);
+    if (!isUserAvailable) {
+      _db.collection('users').doc(user.uid).set(userInfo);
+      print("new user made");
+    }
   }
 
   static Future<bool> _checkUserDocs(String id) {

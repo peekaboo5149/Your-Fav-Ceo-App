@@ -20,16 +20,21 @@ class AuthService extends IAuthService {
 
   @override
   Future<User> signInWithFb() async {
+    print("Signing in=========");
     final result = await _fbLogin.logIn(
       ['email', 'public_profile'],
     );
+    print(result.accessToken.toString());
+
     if (result.accessToken != null) {
       try {
         final UserCredential userCreds =
             await _auth.signInWithCredential(FacebookAuthProvider.credential(
           result.accessToken.token,
         ));
+        print("==========adding user to list");
         await CloudDatabaseService.addUserToList(userCreds.user);
+        print("==========added user to list");
         return userCreds.user;
       } catch (e) {
         if (e.code != 'ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL') throw e;
