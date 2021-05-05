@@ -22,6 +22,7 @@ class CloudDatabaseService {
         (event) => event.docs.map((doc) => CEO.fromMap(doc.data())).toList());
   }
 
+  //This will add new users to the list
   static Future<void> addUserToList(User user) async {
     print('addusertolist called');
     bool isUserAvailable = await _checkUserDocs(user.uid);
@@ -41,6 +42,7 @@ class CloudDatabaseService {
     }
   }
 
+  //This will check if user is already in the list
   static Future<bool> _checkUserDocs(String id) {
     return _db
         .collection('users')
@@ -49,6 +51,7 @@ class CloudDatabaseService {
         .then((docSnapshot) => docSnapshot.exists);
   }
 
+  //This is for voting
   static Future<void> updateUserCeoList(
       String userId, String ceoId, bool isUpvote) async {
     var ds = await _db.collection('users').doc(userId).get();
@@ -72,6 +75,7 @@ class CloudDatabaseService {
             .update({'downvotes': toChange});
   }
 
+  //This will give all the unvisited ceos
   static Future<List<CEO>> getUnvisitedCEOs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     Map user = json.decode(prefs.getString('cUser'));
